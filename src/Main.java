@@ -1,24 +1,27 @@
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.ImageIcon;
 
 class showroom extends JFrame{
     public showroom(){
-        System.out.println("Hello");
+        JFrame frame= new JFrame("main application");
 
-        JFrame frame = new JFrame("Calculator");
-        frame.setSize(500, 500);
 
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //basic frame settings
+        frame.setSize(400, 400);
         frame.setVisible(true);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
 
-        JPanel panel = new JPanel();
-        JButton button = new JButton("Click here");
-        button.setFont(new Font("Arial", Font.BOLD, 12));
-        button.setBackground(Color.BLACK);
-        panel.add(button);
+        ImageIcon image = new ImageIcon("./images.png");
 
-        frame.add(panel);
+
+        //label
+        JLabel label= new JLabel("Hello World");
+
+        frame.add(label);
+        frame.setIconImage(image.getImage());
     }
 }
 
