@@ -1,8 +1,10 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-class showroom extends JFrame{
+class showroom extends JFrame {
     public showroom(){
 
         JFrame frame= new JFrame("main application");
@@ -101,6 +103,27 @@ class showroom extends JFrame{
         btn3.setPreferredSize(new Dimension(120, 60));
         btn3.setBackground(new Color(135, 206, 250)); // Light Blue
 
+        btn1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                startTimer();
+            }
+        });
+
+        btn2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                stopTimer();
+            }
+        });
+
+        btn3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                restartTimer();
+            }
+        });
+
         panel2.add(btn1);
         panel2.add(btn2);
         panel2.add(btn3);
@@ -113,4 +136,38 @@ class showroom extends JFrame{
 
 
     }
+
+    private void startTimer(){
+        if(timer == null){
+            timer = new Timer(1000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    elapsedTime++;
+                    updateLabel();
+                }
+            })
+        }
+    }
+
+    private void stopTimer(){
+        if (timer !=null){
+            timer.stop();
+        }
+    }
+
+
+    private void restartTimer(){
+        stopTimer();
+        elapsedTimer= 0;
+        updateLabel();
+        startTimer();
+    }
+
+    private void updateLabel(){
+        int hours= elapsedTime / 3600;
+        int  minutes= (elapsedTime % 3600 ) /36;
+        int seconds= elapsed % 60;
+        label.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
+    }
+
 }
