@@ -163,6 +163,13 @@ class showroom extends JFrame {
         startTimer();
     }
 
+    private void resetTimer(){
+        stopTimer();
+        elapsedTimer= 0;
+        updateLabel();
+    }
+
+
     private void updateLabel(){
         int hours= elapsedTime / 3600;
         int  minutes= (elapsedTime % 3600 ) /36;
